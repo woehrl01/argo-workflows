@@ -527,6 +527,7 @@ func (s *CLISuite) TestNodeSuspendResume() {
 		WaitForWorkflow(fixtures.Condition(func(wf *wfv1.Workflow) (bool, string) {
 			return wf.Status.AnyActiveSuspendNode(), "suspended node"
 		})).
+		WaitForWorkflow(2*time.Second).
 		RunCli([]string{"resume", "@latest", "--node-field-selector", "inputs.parameters.tag.value=suspend1-tag1"}, func(t *testing.T, output string, err error) {
 			if assert.NoError(t, err) {
 				assert.Contains(t, output, "workflow @latest resumed")
@@ -535,6 +536,7 @@ func (s *CLISuite) TestNodeSuspendResume() {
 		WaitForWorkflow(fixtures.Condition(func(wf *wfv1.Workflow) (bool, string) {
 			return wf.Status.AnyActiveSuspendNode(), "suspended node"
 		})).
+		WaitForWorkflow(2*time.Second).
 		RunCli([]string{"stop", "@latest", "--node-field-selector", "inputs.parameters.tag.value=suspend2-tag1", "--message", "because"}, func(t *testing.T, output string, err error) {
 			if assert.NoError(t, err) {
 				assert.Regexp(t, "workflow node-suspend-.* stopped", output)

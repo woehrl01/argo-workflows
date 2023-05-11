@@ -5,6 +5,7 @@ on:
       - "master"
       - "release-*"
       - "!release-2.8"
+      - "fix-flaky-cli"
   pull_request:
     branches:
       - "master"
