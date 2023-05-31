@@ -2134,6 +2134,9 @@ definitions:
       name:
         description: name of the mutex
         type: string
+      namespace:
+        default: '[namespace of workflow]'
+        type: string
     type: object
   NFSVolumeSource:
     description: NFS volumes do not support ownership management or SELinux relabeling.
@@ -3816,6 +3819,9 @@ definitions:
     properties:
       configMapKeyRef:
         $ref: '#/definitions/ConfigMapKeySelector'
+      namespace:
+        default: '[namespace of workflow]'
+        type: string
     type: object
   Sequence:
     description: Sequence expands a workflow step into numeric range
